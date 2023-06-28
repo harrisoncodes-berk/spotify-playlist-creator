@@ -14,8 +14,10 @@ class Spotify:
         print(self.user_id)
 
     def get_access_token(self):
-        return auth.get_access_token(self.client_id, self.client_secret, self.redirect_uri)
-    
+        return auth.get_access_token(
+            self.client_id, self.client_secret, self.redirect_uri
+        )
+
     def get_user_id(self):
         url = "https://api.spotify.com/v1/me"
         headers = {"Authorization": f"Bearer {self.access_token}"}
@@ -37,7 +39,7 @@ class Spotify:
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         return response.json()
-    
+
     def add_songs_to_playlist(self, playlist_id, song_uris):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
         headers = {
